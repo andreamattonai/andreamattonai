@@ -1,0 +1,26 @@
+client.on(`message`, async message => {
+    if(message.content.startsWith("!list")){
+      var ruolo = await message.mentions.roles.first()
+      //var lista = ruolo.members.map(m=>m.username).join(`, `)
+      var lista = ruolo.members.map(user => user.user.username).join(', ') 
+        let embed = new Discord.MessageEmbed()
+    .setDescription(lista)
+    .setTitle(`Users with the ${ruolo.name} role:`)
+    
+        message.channel.send(embed);
+    }
+    if(message.content.startsWith('!role')) {
+     const user = message.mentions.members.first()
+     const role = message.mentions.roles.first()
+     
+     user.roles.add(role)
+    }
+    if(message.content.startsWith('!rimuovi')) {
+        const user = message.mentions.members.first()
+        const role = message.mentions.roles.first()
+        
+        user.roles.remove(role)
+       
+    }
+   
+    })
